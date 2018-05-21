@@ -7,26 +7,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Source.CreateVoteController">
    <children>
       <Label layoutX="237.0" layoutY="23.0" text="Create Vote">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Button layoutX="23.0" layoutY="16.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" text="HOME" />
-      <Button layoutX="514.0" layoutY="16.0" mnemonicParsing="false" text="LOGOUT" />
+      <Button fx:id="homeButton" layoutX="23.0" layoutY="16.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" text="HOME" />
+      <Button fx:id="logoutButton" layoutX="514.0" layoutY="16.0" mnemonicParsing="false" text="LOGOUT" />
       <AnchorPane layoutX="-7.0" layoutY="58.0" prefHeight="341.0" prefWidth="609.0">
          <children>
-            <Button layoutX="14.0" layoutY="302.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" text="BACK" />
-            <Button layoutX="518.0" layoutY="302.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" text="SAVE" />
+            <Button fx:id="backButton" layoutX="14.0" layoutY="302.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" text="BACK" />
+            <Button fx:id="createVote$saveButton" layoutX="518.0" layoutY="302.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" text="SAVE" />
             <Label layoutX="63.0" layoutY="33.0" text="Vote Title" />
             <Label layoutX="63.0" layoutY="60.0" text="Description" />
-            <Button layoutX="63.0" layoutY="171.0" mnemonicParsing="false" text="Add Question" />
-            <Button layoutX="169.0" layoutY="170.0" mnemonicParsing="false" text="View Question" />
-            <Button layoutX="275.0" layoutY="171.0" mnemonicParsing="false" text="Delete Question" />
-            <TextArea layoutX="135.0" layoutY="59.0" prefHeight="98.0" prefWidth="266.0" />
-            <TextField layoutX="135.0" layoutY="29.0" prefHeight="25.0" prefWidth="266.0" />
+            <Button fx:id="createVote$addQuestionButton" layoutX="63.0" layoutY="171.0" mnemonicParsing="false" text="Add Question" />
+            <Button fx:id="createVote$viewQuestionButton" layoutX="169.0" layoutY="170.0" mnemonicParsing="false" text="View Question" />
+            <Button fx:id="createVote$deleteQuestionButton" layoutX="275.0" layoutY="171.0" mnemonicParsing="false" text="Delete Question" />
+            <TextArea fx:id="createVote$descriptionTextField" layoutX="135.0" layoutY="59.0" prefHeight="98.0" prefWidth="266.0" />
+            <TextField fx:id="createVote$voteTitleTextField" layoutX="135.0" layoutY="29.0" prefHeight="25.0" prefWidth="266.0" />
          </children>
       </AnchorPane>
    </children>

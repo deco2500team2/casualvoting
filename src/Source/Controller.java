@@ -30,20 +30,6 @@ public class Controller implements Initializable{
 	/*
 	 * Instance variables:
 	 */
-	private Account account;
-	private Vote vote;
-	
-	private Stage window;
-	
-	private Scene loginScene;
-	private Scene accountHomeScene;
-	private Scene createVoteScene;
-	private Scene editVoteScene;
-	private Scene participateScene;
-	private Scene resultsScene;
-	private Scene voteDetailsScene;
-	private Scene voteListScene;
-	private Scene voteScene;
 	
 	/* The GUI components from the FXML file */
 	@FXML
@@ -141,12 +127,6 @@ public class Controller implements Initializable{
 	
 	
 	
-	/**
-	 * A constructor to initialise the controller with no parameters.
-	 */
-	public Controller() {
-		
-	}
 	
 	/**
 	 * A method to handle the GUI initialisation.

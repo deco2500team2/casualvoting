@@ -5,18 +5,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Source.ParticipateVoteController">
    <children>
       <Label layoutX="234.0" layoutY="23.0" text="(vote name)">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Button layoutX="23.0" layoutY="16.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" text="HOME" />
-      <Button layoutX="514.0" layoutY="16.0" mnemonicParsing="false" text="LOGOUT" />
+      <Button fx:id="homeButton" layoutX="23.0" layoutY="16.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" text="HOME" />
+      <Button fx:id="logoutButton" layoutX="514.0" layoutY="16.0" mnemonicParsing="false" text="LOGOUT" />
       <AnchorPane layoutX="-7.0" layoutY="58.0" prefHeight="341.0" prefWidth="609.0">
          <children>
-            <Button layoutX="14.0" layoutY="302.0" mnemonicParsing="false" text="CANCEL" />
+            <Button fx:id="backButton" layoutX="14.0" layoutY="302.0" mnemonicParsing="false" text="CANCEL" />
             <Button layoutX="480.0" layoutY="302.0" mnemonicParsing="false" text="SAVE AND FINISH" />
             <Label layoutX="73.0" layoutY="14.0" text="(Decription)" />
             <Label layoutX="44.0" layoutY="54.0" text="Question 1:">

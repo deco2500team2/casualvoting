@@ -13,14 +13,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
+import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
 /**
  * Controller class for the voting application.
  * @author Simon Curtis
  */
-public class AccountHomeController implements Initializable{
+public class AccountDetailsController implements Initializable{
 	/*
 	 * Instance variables:
 	 */
@@ -31,13 +31,13 @@ public class AccountHomeController implements Initializable{
 	@FXML
 	private Button logoutButton;
 	@FXML
-	private Button home$accountDetailsButton;
+	private Button backButton;
 	@FXML
-	private Button home$createVoteButton;
+	private Button accountDetails$resetPasswordButton;
 	@FXML
-	private Button home$viewVoteAndDetailsButton;
+	private ComboBox accountDetails$titleDropdown;
 	@FXML
-	private ListView home$recommendedVotesListView;
+	private Button accountDetails$saveButton;
 	
 	
 	/**
@@ -48,18 +48,45 @@ public class AccountHomeController implements Initializable{
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		handleAccountHomeActions();
+		handleAccountDetailActions();
 	}
 	
 	
 	/*
 	 * A method to create all of the button handlers for the login scene.
 	 */
-	private void handleAccountHomeActions(){
-		logoutButton.setOnAction(logoutButtonHandler());
+	private void handleAccountDetailActions(){
+		
 	}
 	
 	
+	
+	
+	
+	
+	/*
+	 * Changes the scene to the home scene
+	 */
+	private EventHandler<ActionEvent> homeButtonHandler(){
+		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				try {
+					Parent p = FXMLLoader.load(getClass().getResource("accountHome.fxml"));
+					Scene nextScene = new Scene(p);
+					
+					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+					
+					window.setScene(nextScene);
+					window.show();
+					
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		return event;
+	}
 	
 	/*
 	 * Changes the scene to the login scene
@@ -84,4 +111,12 @@ public class AccountHomeController implements Initializable{
 		};
 		return event;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
