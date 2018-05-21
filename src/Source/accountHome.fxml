@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Source.AccountHomeController">
    <children>
       <SplitPane dividerPositions="0.5" layoutY="66.0" prefHeight="339.0" prefWidth="600.0">
         <items>
@@ -37,7 +36,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button layoutX="23.0" layoutY="16.0" mnemonicParsing="false" text="HOME" />
-      <Button layoutX="514.0" layoutY="16.0" mnemonicParsing="false" text="LOGOUT" />
+      <Button id="homeButton" layoutX="23.0" layoutY="16.0" mnemonicParsing="false" text="HOME" />
+      <Button fx:id="logoutButton" layoutX="514.0" layoutY="16.0" mnemonicParsing="false" text="LOGOUT" />
    </children>
 </AnchorPane>

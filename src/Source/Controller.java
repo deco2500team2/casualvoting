@@ -13,7 +13,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -28,6 +32,18 @@ public class Controller implements Initializable{
 	 */
 	private Account account;
 	private Vote vote;
+	
+	private Stage window;
+	
+	private Scene loginScene;
+	private Scene accountHomeScene;
+	private Scene createVoteScene;
+	private Scene editVoteScene;
+	private Scene participateScene;
+	private Scene resultsScene;
+	private Scene voteDetailsScene;
+	private Scene voteListScene;
+	private Scene voteScene;
 	
 	/* The GUI components from the FXML file */
 	@FXML
@@ -96,9 +112,32 @@ public class Controller implements Initializable{
 	private TextField createVote$voteTitleTextField;
 	@FXML
 	private TextField createVote$descriptionTextField;
-	
-	
-	
+	@FXML
+	private Button voteSetting$finishButton;
+	@FXML
+	private ChoiceBox voteSetting$groupBox;
+	@FXML
+	private CheckBox voteSetting$openCheckBox;
+	@FXML
+	private CheckBox voteSetting$closeCheckBox;
+	@FXML
+	private DatePicker voteSetting$openDatePicker;
+	@FXML
+	private DatePicker voteSetting$closeDatePicker;
+	@FXML
+	private Hyperlink voteSetting$hyperlink;
+	@FXML
+	private Button vote$editVoteButton;
+	@FXML
+	private Button vote$participateButton;
+	@FXML
+	private Button vote$viewResultsButton;
+	@FXML
+	private Button vote$saveAndFinishButton;
+	@FXML
+	private Button voteList$searchButton;
+	@FXML
+	private ListView voteList$voteList;
 	
 	
 	
@@ -117,14 +156,106 @@ public class Controller implements Initializable{
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		handleButtonAction();
+		try{
+			handleloginActions();
+		} catch(NullPointerException e){}
+		try{
+			handleAccountHomeActions();
+		} catch(NullPointerException e){}
+		try{
+			handleAccountDetailActions();
+		} catch(NullPointerException e){}
+		try{
+			handlecreateVoteActions();
+		} catch(NullPointerException e){}
+		try{
+			handleEditVoteActions();
+		} catch(NullPointerException e){}
+		try{
+			handleParticipateVoteActions();
+		} catch(NullPointerException e){}
+		try{
+			handleResultsActions();
+		} catch(NullPointerException e){}
+		try{
+			handleVoteDetailsActions();
+		} catch(NullPointerException e){}
+		try{
+			handleVoteListActions();
+		} catch(NullPointerException e){}
+		try{
+			handleVotePageActions();
+		} catch(NullPointerException e){}
 	}
 	
 	/*
-	 * A method to create all of the button and image view event handlers.
+	 * A method to create all of the button handlers for the login scene.
 	 */
-	private void handleButtonAction(){
+	private void handleloginActions(){
 		login$loginbutton.setOnAction(verifyAndLogin());
+	}
+	
+	/*
+	 * A method to create all of the button handlers for the login scene.
+	 */
+	private void handleAccountHomeActions(){
+		logoutButton.setOnAction(logoutButtonHandler());
+	}
+	
+	/*
+	 * A method to create all of the button handlers for the login scene.
+	 */
+	private void handleAccountDetailActions(){
+		
+	}
+	
+	/*
+	 * A method to create all of the button handlers for the login scene.
+	 */
+	private void handlecreateVoteActions(){
+		
+	}
+	
+	/*
+	 * A method to create all of the button handlers for the login scene.
+	 */
+	private void handleEditVoteActions(){
+		
+	}
+	
+	/*
+	 * A method to create all of the button handlers for the login scene.
+	 */
+	private void handleParticipateVoteActions(){
+		
+	}
+	
+	/*
+	 * A method to create all of the button handlers for the login scene.
+	 */
+	private void handleResultsActions(){
+		
+	}
+	
+	/*
+	 * A method to create all of the button handlers for the login scene.
+	 */
+	private void handleVoteDetailsActions(){
+		
+	}
+	
+	/*
+	 * A method to create all of the button handlers for the login scene.
+	 */
+	private void handleVoteListActions(){
+		
+	}
+	
+	/*
+	 * A method to create all of the button handlers for the login scene.
+	 */
+	private void handleVotePageActions(){
+		
 	}
 	
 	/*
@@ -144,7 +275,6 @@ public class Controller implements Initializable{
 					window.show();
 					
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -172,7 +302,18 @@ public class Controller implements Initializable{
 		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event){
-				
+				try {
+					Parent p = FXMLLoader.load(getClass().getResource("accountHome.fxml"));
+					Scene nextScene = new Scene(p);
+					
+					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+					
+					window.setScene(nextScene);
+					window.show();
+					
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		};
 		return event;
@@ -185,7 +326,18 @@ public class Controller implements Initializable{
 		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event){
-				
+				try {
+					Parent p = FXMLLoader.load(getClass().getResource("login.fxml"));
+					Scene nextScene = new Scene(p);
+					
+					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+					
+					window.setScene(nextScene);
+					window.show();
+					
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		};
 		return event;
