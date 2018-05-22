@@ -30,103 +30,12 @@ public class ResultsController implements Initializable{
 	/*
 	 * Instance variables:
 	 */
-	
-	/* The GUI components from the FXML file */
-	@FXML
-	private Button login$loginbutton;
-	@FXML
-	private Button login$registerButton;
-	@FXML
-	private TextField login$usernameTextField;
-	@FXML
-	private TextField login$passwordTextField;
-	@FXML
-	private ComboBox login$titleDropdown;
-	@FXML
-	private TextField login$firstnameTextField;
-	@FXML
-	private TextField login$surnameTextField;
-	@FXML
-	private TextField login$dobTextField;
-	@FXML
-	private TextField login$emailTextField;
-	@FXML
-	private TextField login$otherUsernameTextField;
-	@FXML
-	private TextField login$otherPasswordTextField;
-	@FXML
-	private TextField login$repeatPasswordTextField;
 	@FXML
 	private Button homeButton;
 	@FXML
 	private Button logoutButton;
 	@FXML
 	private Button backButton;
-	@FXML
-	private Button home$accountDetailsButton;
-	@FXML
-	private Button home$createVoteButton;
-	@FXML
-	private Button home$viewVoteAndDetailsButton;
-	@FXML
-	private ListView home$recommendedVotesListView;
-	@FXML
-	private ComboBox accountDetails$titleDropdown;
-	@FXML
-	private Button accountDetails$saveButton;
-	@FXML
-	private Button editVote$saveButton;
-	@FXML
-	private Button editVote$addQuestionButton;
-	@FXML
-	private Button editVote$viewQuestionButton;
-	@FXML
-	private Button editVote$deleteQuestionButton;
-	@FXML
-	private TextField editVote$voteTitleTextField;
-	@FXML
-	private TextField editVote$descriptionTextField;
-	@FXML
-	private Button createVote$saveButton;
-	@FXML
-	private Button createVote$addQuestionButton;
-	@FXML
-	private Button createVote$viewQuestionButton;
-	@FXML
-	private Button createVote$deleteQuestionButton;
-	@FXML
-	private TextField createVote$voteTitleTextField;
-	@FXML
-	private TextField createVote$descriptionTextField;
-	@FXML
-	private Button voteSetting$finishButton;
-	@FXML
-	private ChoiceBox voteSetting$groupBox;
-	@FXML
-	private CheckBox voteSetting$openCheckBox;
-	@FXML
-	private CheckBox voteSetting$closeCheckBox;
-	@FXML
-	private DatePicker voteSetting$openDatePicker;
-	@FXML
-	private DatePicker voteSetting$closeDatePicker;
-	@FXML
-	private Hyperlink voteSetting$hyperlink;
-	@FXML
-	private Button vote$editVoteButton;
-	@FXML
-	private Button vote$participateButton;
-	@FXML
-	private Button vote$viewResultsButton;
-	@FXML
-	private Button vote$saveAndFinishButton;
-	@FXML
-	private Button voteList$searchButton;
-	@FXML
-	private ListView voteList$voteList;
-	
-	
-	
 	
 	/**
 	 * A method to handle the GUI initialisation.
@@ -143,6 +52,49 @@ public class ResultsController implements Initializable{
 	 * A method to create all of the button handlers for the login scene.
 	 */
 	private void handleResultsActions(){
-		
+		homeButton.setOnAction(homeButtonHandler());
+		logoutButton.setOnAction(logoutButtonHandler());
+	}
+	
+	/*
+	 * Changes the scene to the home scene
+	 */
+	private EventHandler<ActionEvent> homeButtonHandler(){
+		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				try {
+					Parent p = FXMLLoader.load(getClass().getResource("accountHome.fxml"));
+					Scene nextScene = new Scene(p);
+					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+					window.setScene(nextScene);
+					window.show();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		return event;
+	}
+	
+	/*
+	 * Changes the scene to the login scene
+	 */
+	private EventHandler<ActionEvent> logoutButtonHandler(){
+		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				try {
+					Parent p = FXMLLoader.load(getClass().getResource("login.fxml"));
+					Scene nextScene = new Scene(p);
+					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+					window.setScene(nextScene);
+					window.show();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		return event;
 	}
 }

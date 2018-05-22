@@ -1,3 +1,4 @@
 username,password,email,title,firstname,surname,dob
 f,g,e,a,b,c,d
 d,d,d,mr,simon,c,sdjdj
+scurtis123,password,s@gmail.com,Mr,Simon,Curtis,06/03/1998

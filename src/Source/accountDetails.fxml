@@ -24,28 +24,28 @@
             <Label layoutX="43.0" layoutY="144.0" text="Email" />
             <Label layoutX="41.0" layoutY="118.0" text="Date of Birth" />
             <Label layoutX="46.0" layoutY="39.0" text="Title" />
+            <TextField fx:id="accountDetails$firstnameTextField" layoutX="139.0" layoutY="61.0" prefHeight="7.0" prefWidth="149.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
             <Label layoutX="42.0" layoutY="170.0" text="Username" />
-            <TextField layoutX="139.0" layoutY="61.0" prefHeight="7.0" prefWidth="149.0">
+            <TextField fx:id="accountDetails$surnameTextField" layoutX="139.0" layoutY="88.0" prefHeight="23.0" prefWidth="149.0">
                <font>
                   <Font size="10.0" />
                </font>
             </TextField>
-            <TextField layoutX="139.0" layoutY="88.0" prefHeight="23.0" prefWidth="149.0">
+            <TextField fx:id="accountDetails$dobTextField" layoutX="139.0" layoutY="115.0" prefHeight="23.0" prefWidth="148.0">
                <font>
                   <Font size="10.0" />
                </font>
             </TextField>
-            <TextField layoutX="139.0" layoutY="115.0" prefHeight="23.0" prefWidth="148.0">
+            <TextField fx:id="accountDetails$emailTextField" layoutX="139.0" layoutY="141.0" prefHeight="23.0" prefWidth="148.0">
                <font>
                   <Font size="10.0" />
                </font>
             </TextField>
-            <TextField layoutX="139.0" layoutY="141.0" prefHeight="23.0" prefWidth="148.0">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </TextField>
-            <TextField layoutX="140.0" layoutY="167.0" prefHeight="23.0" prefWidth="148.0">
+            <TextField fx:id="accountDetails$usernameTextField" layoutX="140.0" layoutY="167.0" prefHeight="23.0" prefWidth="148.0">
                <font>
                   <Font size="10.0" />
                </font>

@@ -13,12 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -41,7 +36,7 @@ public class LoginController implements Initializable{
 	@FXML
 	private TextField login$passwordTextField;
 	@FXML
-	private ComboBox login$titleDropdown;
+	private ComboBox<String> login$titleDropdown;
 	@FXML
 	private TextField login$firstnameTextField;
 	@FXML
@@ -73,6 +68,7 @@ public class LoginController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		handleloginActions();
+		login$titleDropdown.getItems().addAll("Mr", "Mrs");
 	}
 	
 	/*
@@ -90,17 +86,21 @@ public class LoginController implements Initializable{
 		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event){
-				try {
-					Parent p = FXMLLoader.load(getClass().getResource("accountHome.fxml"));
-					Scene nextScene = new Scene(p);
-					
-					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-					
-					window.setScene(nextScene);
-					window.show();
-					
-				} catch (IOException e) {
-					e.printStackTrace();
+				String username = login$usernameTextField.getText();
+				String password = login$passwordTextField.getText();
+				Account account = DataBase.checkLogin(username, password);
+				if(account == null){
+					AlertBox.display("Alert!", "Incorrect username or password");
+				} else{
+					try {
+						Parent p = FXMLLoader.load(getClass().getResource("accountHome.fxml"));
+						Scene nextScene = new Scene(p);
+						Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+						window.setScene(nextScene);
+						window.show();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		};
@@ -114,7 +114,10 @@ public class LoginController implements Initializable{
 		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event){
-				
+				DataBase.addAccount(login$otherUsernameTextField.getText(), login$otherPasswordTextField.getText(), 
+						login$emailTextField.getText(), "Mr", login$firstnameTextField.getText(), 
+						login$surnameTextField.getText(), login$dobTextField.getText());
+				AlertBox.display("Alert!", "Account has been created");
 			}
 		};
 		return event;

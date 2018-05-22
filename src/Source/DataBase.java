@@ -129,6 +129,7 @@ public class DataBase {
 	public static Account checkLogin(String username, String password) {
 		for(Account a:accounts){
 			if(username.equals(a.username) && password.equals(a.password)){
+				userAccount = a;
 				return a;
 			}
 		}

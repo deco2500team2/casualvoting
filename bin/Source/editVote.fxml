@@ -25,7 +25,7 @@
             <Button fx:id="editVote$addQuestionButton" layoutX="63.0" layoutY="171.0" mnemonicParsing="false" text="Add Question" />
             <Button fx:id="editVote$viewQuestionButton" layoutX="169.0" layoutY="170.0" mnemonicParsing="false" text="View Question" />
             <Button fx:id="editVote$deleteQuestionButton" layoutX="275.0" layoutY="171.0" mnemonicParsing="false" text="Delete Question" />
-            <TextArea fx:id="editVote$descriptionTextField" layoutX="135.0" layoutY="59.0" prefHeight="98.0" prefWidth="266.0" />
+            <TextArea fx:id="editVote$descriptionTextArea" layoutX="135.0" layoutY="59.0" prefHeight="98.0" prefWidth="266.0" />
             <TextField fx:id="editVote$voteTitleTextField" layoutX="135.0" layoutY="29.0" prefHeight="25.0" prefWidth="266.0" />
          </children>
       </AnchorPane>

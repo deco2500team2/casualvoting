@@ -55,6 +55,49 @@ public class ParticipateVoteController implements Initializable{
 	 * A method to create all of the button handlers for the login scene.
 	 */
 	private void handleParticipateVoteActions(){
-		
+		homeButton.setOnAction(homeButtonHandler());
+		logoutButton.setOnAction(logoutButtonHandler());
+	}
+	
+	/*
+	 * Changes the scene to the home scene
+	 */
+	private EventHandler<ActionEvent> homeButtonHandler(){
+		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				try {
+					Parent p = FXMLLoader.load(getClass().getResource("accountHome.fxml"));
+					Scene nextScene = new Scene(p);
+					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+					window.setScene(nextScene);
+					window.show();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		return event;
+	}
+	
+	/*
+	 * Changes the scene to the login scene
+	 */
+	private EventHandler<ActionEvent> logoutButtonHandler(){
+		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				try {
+					Parent p = FXMLLoader.load(getClass().getResource("login.fxml"));
+					Scene nextScene = new Scene(p);
+					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+					window.setScene(nextScene);
+					window.show();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		return event;
 	}
 }

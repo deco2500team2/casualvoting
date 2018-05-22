@@ -2,6 +2,8 @@ package Source;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -37,7 +39,7 @@ public class AccountHomeController implements Initializable{
 	@FXML
 	private Button home$viewVoteAndDetailsButton;
 	@FXML
-	private ListView home$recommendedVotesListView;
+	private ListView<String> home$recommendedVotesListView;
 	
 	
 	/**
@@ -57,6 +59,14 @@ public class AccountHomeController implements Initializable{
 	 */
 	private void handleAccountHomeActions(){
 		logoutButton.setOnAction(logoutButtonHandler());
+		home$accountDetailsButton.setOnAction(accountDetailsButtonHandler());
+		home$createVoteButton.setOnAction(createVoteButtonHandler());
+		home$viewVoteAndDetailsButton.setOnAction(viewVotesButtonHandler());
+		List<String> votenames = new ArrayList<String>();
+		for(Vote v:DataBase.votes){
+			votenames.add(v.votename);
+		}
+		home$recommendedVotesListView.getItems().setAll(votenames);
 	}
 	
 	
@@ -71,12 +81,72 @@ public class AccountHomeController implements Initializable{
 				try {
 					Parent p = FXMLLoader.load(getClass().getResource("login.fxml"));
 					Scene nextScene = new Scene(p);
-					
 					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-					
 					window.setScene(nextScene);
 					window.show();
-					
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		return event;
+	}
+	
+	/*
+	 * Changes the scene the account details scene
+	 */
+	private EventHandler<ActionEvent> accountDetailsButtonHandler(){
+		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				try {
+					Parent p = FXMLLoader.load(getClass().getResource("accountDetails.fxml"));
+					Scene nextScene = new Scene(p);
+					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+					window.setScene(nextScene);
+					window.show();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		return event;
+	}
+	
+	/*
+	 * Changes the scene the create vote scene
+	 */
+	private EventHandler<ActionEvent> createVoteButtonHandler(){
+		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				try {
+					Parent p = FXMLLoader.load(getClass().getResource("createVote.fxml"));
+					Scene nextScene = new Scene(p);
+					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+					window.setScene(nextScene);
+					window.show();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		return event;
+	}
+	
+	/*
+	 * Changes the scene the create vote scene
+	 */
+	private EventHandler<ActionEvent> viewVotesButtonHandler(){
+		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				try {
+					Parent p = FXMLLoader.load(getClass().getResource("voteList.fxml"));
+					Scene nextScene = new Scene(p);
+					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+					window.setScene(nextScene);
+					window.show();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

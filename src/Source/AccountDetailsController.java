@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
@@ -35,7 +36,17 @@ public class AccountDetailsController implements Initializable{
 	@FXML
 	private Button accountDetails$resetPasswordButton;
 	@FXML
-	private ComboBox accountDetails$titleDropdown;
+	private ComboBox<String> accountDetails$titleDropdown;
+	@FXML
+	private TextField accountDetails$firstnameTextField;
+	@FXML
+	private TextField accountDetails$surnameTextField;
+	@FXML
+	private TextField accountDetails$dobTextField;
+	@FXML
+	private TextField accountDetails$emailTextField;
+	@FXML
+	private TextField accountDetails$usernameTextField;
 	@FXML
 	private Button accountDetails$saveButton;
 	
@@ -49,6 +60,12 @@ public class AccountDetailsController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		handleAccountDetailActions();
+		accountDetails$titleDropdown.getItems().addAll("Mr", "Mrs");
+		accountDetails$firstnameTextField.setText(DataBase.userAccount.firstname);
+		accountDetails$surnameTextField.setText(DataBase.userAccount.surname);
+		accountDetails$dobTextField.setText(DataBase.userAccount.DoB);
+		accountDetails$emailTextField.setText(DataBase.userAccount.email);
+		accountDetails$usernameTextField.setText(DataBase.userAccount.username);
 	}
 	
 	
@@ -56,12 +73,51 @@ public class AccountDetailsController implements Initializable{
 	 * A method to create all of the button handlers for the login scene.
 	 */
 	private void handleAccountDetailActions(){
-		
+		homeButton.setOnAction(homeButtonHandler());
+		logoutButton.setOnAction(logoutButtonHandler());
+		backButton.setOnAction(homeButtonHandler());
+		accountDetails$saveButton.setOnAction(saveButtonHandler());
+		accountDetails$resetPasswordButton.setOnAction(resetPasswordButtonHandler());
 	}
 	
+	/*
+	 * Changes the scene to the reset password scene
+	 */
+	private EventHandler<ActionEvent> resetPasswordButtonHandler(){
+		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				try {
+					Parent p = FXMLLoader.load(getClass().getResource("popupPassword.fxml"));
+					Scene nextScene = new Scene(p);
+					Stage window = new Stage();
+					window.setScene(nextScene);
+					window.showAndWait();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		return event;
+	}
 	
-	
-	
+	/*
+	 * Changes the scene to the home scene
+	 */
+	private EventHandler<ActionEvent> saveButtonHandler(){
+		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				DataBase.userAccount.firstname = accountDetails$firstnameTextField.getText();
+				DataBase.userAccount.surname = accountDetails$surnameTextField.getText();
+				DataBase.userAccount.DoB = accountDetails$dobTextField.getText();
+				DataBase.userAccount.email = accountDetails$emailTextField.getText();
+				DataBase.userAccount.username = accountDetails$usernameTextField.getText();
+				AlertBox.display("Alert!", "Your Changes have been saved");
+			}
+		};
+		return event;
+	}
 	
 	
 	/*
@@ -74,12 +130,9 @@ public class AccountDetailsController implements Initializable{
 				try {
 					Parent p = FXMLLoader.load(getClass().getResource("accountHome.fxml"));
 					Scene nextScene = new Scene(p);
-					
 					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-					
 					window.setScene(nextScene);
 					window.show();
-					
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -98,12 +151,9 @@ public class AccountDetailsController implements Initializable{
 				try {
 					Parent p = FXMLLoader.load(getClass().getResource("login.fxml"));
 					Scene nextScene = new Scene(p);
-					
 					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-					
 					window.setScene(nextScene);
 					window.show();
-					
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
