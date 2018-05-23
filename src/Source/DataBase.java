@@ -16,6 +16,7 @@ public class DataBase {
 	static List<Vote> votes;
 	static Account userAccount;
 	static Vote currentVote;
+	static Question currentQuestion;
 	
 	//just used for creating votes
 	static String currentAnswer;

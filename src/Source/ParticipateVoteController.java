@@ -83,6 +83,19 @@ public class ParticipateVoteController implements Initializable{
 		backButton.setOnAction(backButtonHandler());
 		doneButton.setOnAction(doneButtonHandler());
 		listview.getSelectionModel().selectedItemProperty().addListener(listSelectionHandler());
+		saveQuestionButton.setOnAction(saveButtonHandler());
+	}
+	
+	private EventHandler<ActionEvent> saveButtonHandler(){
+		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				String answer = listviewOption.getSelectionModel().getSelectedItem();
+				DataBase.incrementQuestionCount(DataBase.currentVote.votename, DataBase.currentQuestion.questionTitle, answer);
+				AlertBox.display("Alert", "Answer submitted");
+			}
+		};
+		return event;
 	}
 	
 	private ChangeListener<String> listSelectionHandler(){
@@ -91,7 +104,19 @@ public class ParticipateVoteController implements Initializable{
 			@Override
 			public void changed(ObservableValue<? extends String> arg0,
 					String oldValue, String questionName) {
-				System.out.println(questionName);
+				
+				for(Question q: DataBase.currentVote.questions){
+					if(q.questionTitle.equals(questionName)){
+						DataBase.currentQuestion = q;
+					}
+				}
+				lblQuestion.setText("Question: "+questionName);
+				
+				List<String> answerNames = new ArrayList<String>();
+				for(String s:DataBase.currentQuestion.answers.keySet()){
+					answerNames.add(s);
+				}
+				listviewOption.getItems().setAll(answerNames);
 			}
 			
 		};
