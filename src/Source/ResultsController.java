@@ -2,6 +2,8 @@ package Source;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -18,6 +20,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -36,6 +39,11 @@ public class ResultsController implements Initializable{
 	private Button logoutButton;
 	@FXML
 	private Button backButton;
+	@FXML
+	private Label lblResult;
+	@FXML
+	private ListView<String> listview;
+	
 	
 	/**
 	 * A method to handle the GUI initialisation.
@@ -46,6 +54,17 @@ public class ResultsController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		handleResultsActions();
+		
+		//Find the question in the database
+		
+		List<String> questionNames = new ArrayList<String>();
+		for(Question q:DataBase.currentVote.questions){
+			questionNames.add(q.questionTitle);
+		}
+		lblResult.setText("Vote results for vote: "+DataBase.currentVote.votename+ " . Currently "+ questionNames.size() +" people have participated in your vote.");
+		
+		listview.getItems().setAll(questionNames);
+		
 	}
 	
 	/*
