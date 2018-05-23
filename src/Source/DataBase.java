@@ -226,4 +226,15 @@ public class DataBase {
 		}
 		return null;
 	}
+	
+	public static Question getQuestion(String questionname,String votename){
+		Vote v = getVote(votename);
+		for (Question q:v.questions){
+			if(q.questionTitle.equals(questionname)){
+				return q;
+			}
+		}
+		return null;
+		
+	}
 }

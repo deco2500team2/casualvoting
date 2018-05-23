@@ -8,7 +8,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Source.PopupQuestionController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Source.PopupQuestionResult">
    <children>
       <Label fx:id="popupQuestionResult$questionLabel" layoutX="21.0" layoutY="35.0" text="Question:" />
       <Button fx:id="saveButton" layoutX="334.0" layoutY="260.0" mnemonicParsing="false" text="Done" />

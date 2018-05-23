@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -73,6 +75,33 @@ public class ResultsController implements Initializable{
 	private void handleResultsActions(){
 		homeButton.setOnAction(homeButtonHandler());
 		logoutButton.setOnAction(logoutButtonHandler());
+		
+		listview.getSelectionModel().selectedItemProperty().addListener(listSelectionHandler());
+	}
+	
+	//Deals with the listview
+	private ChangeListener<String> listSelectionHandler(){
+		ChangeListener<String> handler = new ChangeListener<String>(){
+
+			@Override
+			public void changed(ObservableValue<? extends String> arg0,
+					String oldValue, String questionName) {
+				//set the current question
+				//change scene
+				DataBase.currentQuestion = DataBase.getQuestion(questionName,DataBase.currentVote.votename);
+				try {
+					Parent p = FXMLLoader.load(getClass().getResource("popupQuestionResult.fxml"));
+					Scene nextScene = new Scene(p);
+					Stage window = new Stage();
+					window.setScene(nextScene);
+					window.showAndWait();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			
+		};
+		return handler;
 	}
 	
 	/*
