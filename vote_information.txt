@@ -1,3 +1,1 @@
-votename,username,true,opentime,closetime,url,description
-Favourite meme,f,false,null,null,null,A vote about favourite memes
-a,f,false,2018-05-08,2018-05-15,https://www.casual_voting.com/votes/id=17a8hd999ns15,b
+I hate Uni,f,false,2018-05-16,2018-05-30,https://www.casual_voting.com/votes/id=17a8hd999ns15,I want to Kill myself

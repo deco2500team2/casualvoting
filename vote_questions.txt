@@ -1,1 +1,1 @@
-votename,questionname,apple,1
+I hate Uni,Do you hate Uni?,No,0,Yes,0

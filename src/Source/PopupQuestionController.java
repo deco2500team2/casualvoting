@@ -35,7 +35,7 @@ public class PopupQuestionController implements Initializable{
 	@FXML
 	private Button saveButton;
 	@FXML
-	private PasswordField popupPassword$currentPWord;
+	private TextField popupPassword$currentPWord;
 	@FXML
 	private Button addAnswer;
 	@FXML
@@ -102,7 +102,13 @@ public class PopupQuestionController implements Initializable{
 			@Override
 			public void handle(ActionEvent event){
 				Question q = new Question();
-				q.questionTitle = 
+				q.questionTitle = popupPassword$currentPWord.getText();
+				for(String s:listview.getItems()){
+					q.answers.put(s, 0);
+				}
+				DataBase.currentQuestions.add(q);
+				Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+				window.close();
 			}
 		};
 		return event;

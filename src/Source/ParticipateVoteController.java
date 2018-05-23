@@ -2,8 +2,12 @@ package Source;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -18,6 +22,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -38,6 +43,12 @@ public class ParticipateVoteController implements Initializable{
 	private Button logoutButton;
 	@FXML
 	private Button backButton;
+	@FXML
+	private Button doneButton;
+	@FXML
+	private Label pageTitle;
+	@FXML
+	private ListView<String> listview;
 	
 	
 	/**
@@ -49,6 +60,12 @@ public class ParticipateVoteController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		handleParticipateVoteActions();
+		pageTitle.setText(DataBase.currentVote.votename);
+		List<String> questionNames = new ArrayList<String>();
+		for(Question q:DataBase.currentVote.questions){
+			questionNames.add(q.questionTitle);
+		}
+		listview.getItems().setAll(questionNames);
 	}
 	
 	/*
@@ -57,6 +74,59 @@ public class ParticipateVoteController implements Initializable{
 	private void handleParticipateVoteActions(){
 		homeButton.setOnAction(homeButtonHandler());
 		logoutButton.setOnAction(logoutButtonHandler());
+		backButton.setOnAction(backButtonHandler());
+		doneButton.setOnAction(doneButtonHandler());
+		listview.getSelectionModel().selectedItemProperty().addListener(listSelectionHandler());
+	}
+	
+	private ChangeListener<String> listSelectionHandler(){
+		ChangeListener<String> handler = new ChangeListener<String>(){
+
+			@Override
+			public void changed(ObservableValue<? extends String> arg0,
+					String oldValue, String questionName) {
+				System.out.println(questionName);
+			}
+			
+		};
+		return handler;
+	}
+	
+	private EventHandler<ActionEvent> doneButtonHandler(){
+		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				try {
+					Parent p = FXMLLoader.load(getClass().getResource("voteList.fxml"));
+					Scene nextScene = new Scene(p);
+					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+					window.setScene(nextScene);
+					window.show();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		return event;
+	}
+	
+	
+	private EventHandler<ActionEvent> backButtonHandler(){
+		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				try {
+					Parent p = FXMLLoader.load(getClass().getResource("votePage.fxml"));
+					Scene nextScene = new Scene(p);
+					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+					window.setScene(nextScene);
+					window.show();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		return event;
 	}
 	
 	/*

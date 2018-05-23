@@ -60,7 +60,7 @@ public class CreateVoteController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		handlecreateVoteActions();
-		questions = new ArrayList<Question>();
+		DataBase.currentQuestions = new ArrayList<Question>();
 	}
 	
 	public void handlecreateVoteActions() {
@@ -97,7 +97,7 @@ public class CreateVoteController implements Initializable{
 			public void handle(ActionEvent event){
 				DataBase.addVote(createVote$voteTitleTextField.getText(), DataBase.userAccount, createVote$descriptionTextField.getText());
 				DataBase.currentVote = DataBase.getVote(createVote$voteTitleTextField.getText());
-				DataBase.currentVote.questions = questions;
+				DataBase.currentVote.questions = DataBase.currentQuestions;
 				try {
 					Parent p = FXMLLoader.load(getClass().getResource("voteDetails.fxml"));
 					Scene nextScene = new Scene(p);

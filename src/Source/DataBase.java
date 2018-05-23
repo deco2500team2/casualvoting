@@ -16,7 +16,10 @@ public class DataBase {
 	static List<Vote> votes;
 	static Account userAccount;
 	static Vote currentVote;
+	
+	//just used for creating votes
 	static String currentAnswer;
+	static List<Question> currentQuestions;
 	
 	public static void setupDatabase() {
 		accounts = new ArrayList<Account>();
@@ -73,14 +76,14 @@ public class DataBase {
 				String votename = sc.next();
 				for(Vote v: votes){
 					if(v.votename.equals(votename)){
+						Question q = new Question();
+						q.questionTitle = sc.next();
 						while(sc.hasNext()){
-							Question q = new Question();
-							q.questionTitle = sc.next();
 							String answername = sc.next();
 							int answeramount = Integer.parseInt(sc.next());
 							q.answers.put(answername, answeramount);
-							v.questions.add(q);
 						}
+						v.questions.add(q);
 						break;
 					}
 				}
