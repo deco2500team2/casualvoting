@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Source.PopupQuestionController">
+   <children>
+      <Label fx:id="popupQuestionResult$questionLabel" layoutX="21.0" layoutY="35.0" text="Question:" />
+      <Button fx:id="saveButton" layoutX="334.0" layoutY="260.0" mnemonicParsing="false" text="Done" />
+      <BarChart fx:id="popupQuestionResult$barChart" layoutY="60.0" prefHeight="189.0" prefWidth="203.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <PieChart fx:id="popupQuestionResult$pieChart" layoutX="200.0" layoutY="80.0" prefHeight="150.0" prefWidth="175.0" />
+   </children>
+</AnchorPane>
