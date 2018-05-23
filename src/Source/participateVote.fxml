@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Source.ParticipateVoteController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Source.ParticipateVoteController">
    <children>
       <Label fx:id="pageTitle" layoutX="234.0" layoutY="23.0" text="(vote name)">
          <font>
@@ -19,7 +19,14 @@
          <children>
             <Button fx:id="backButton" layoutX="14.0" layoutY="302.0" mnemonicParsing="false" text="CANCEL" />
             <Button fx:id="doneButton" layoutX="480.0" layoutY="302.0" mnemonicParsing="false" text="SAVE AND FINISH" />
-            <ListView fx:id="listview" layoutX="59.0" layoutY="34.0" prefHeight="200.0" prefWidth="200.0" />
+            <ListView fx:id="listview" layoutX="59.0" layoutY="41.0" prefHeight="238.0" prefWidth="200.0" />
+            <AnchorPane layoutX="326.0" layoutY="41.0" prefHeight="238.0" prefWidth="265.0">
+               <children>
+                  <ListView fx:id="listviewOption" layoutX="14.0" layoutY="33.0" prefHeight="173.0" prefWidth="200.0" />
+                  <Label fx:id="lblQuestion" layoutX="14.0" layoutY="5.0" text="Question __:" />
+                  <Button fx:id="saveQuestionButton" layoutX="168.0" layoutY="211.0" mnemonicParsing="false" text="Save Question" />
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>
