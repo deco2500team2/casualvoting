@@ -19,10 +19,10 @@
          <children>
             <Button fx:id="backButton" layoutX="14.0" layoutY="302.0" mnemonicParsing="false" text="CANCEL" />
             <Button layoutX="546.0" layoutY="302.0" mnemonicParsing="false" text="PRINT" />
-            <Label layoutX="73.0" layoutY="14.0" text="Result of vote  (vote name).  In totoal __ responses were collected." />
+            <Label fx:id="lblResult" layoutX="73.0" layoutY="14.0" text="Result of vote  (vote name).  In totoal __ responses were collected." />
             <Button layoutX="450.0" layoutY="302.0" mnemonicParsing="false" text="DOWNLOAD" />
             <Button layoutX="224.0" layoutY="302.0" mnemonicParsing="false" text="ANALYSIS AND MORE INFORMATION" />
-            <ListView layoutX="73.0" layoutY="54.0" prefHeight="200.0" prefWidth="400.0" />
+            <ListView fx:id="listview" layoutX="73.0" layoutY="54.0" prefHeight="200.0" prefWidth="400.0" />
          </children>
       </AnchorPane>
    </children>
