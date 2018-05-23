@@ -1,1 +1,3 @@
-I hate Uni,Do you hate Uni?,No,0,Yes,1
+I hate Uni,Do you hate Uni?,No,0,Yes,2
+I hate Uni,Do you want to kill yourself?,No,0,Yes,1
+Favourite Fruit,What is your favourite fruit?,Apple,0,Grape,0,Orange,1,Banana,0
