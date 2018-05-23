@@ -8,6 +8,8 @@ import java.util.ResourceBundle;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -26,10 +28,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.scene.chart.*;
 
 /**
  * Controller class for the voting application.
- * @author Simon Curtis
+ * @author Alexandra Crawley
  */
 public class PopupQuestionResult implements Initializable{
 	/*
@@ -37,6 +40,12 @@ public class PopupQuestionResult implements Initializable{
 	 */
 	@FXML
 	private Button saveButton;
+	@FXML
+	private PieChart popupQuestionResult$pieChart;
+	@FXML
+	private BarChart<?, ?> barChart;
+	
+	
 	
 	/**
 	 * A method to handle the GUI initialisation.
@@ -48,6 +57,32 @@ public class PopupQuestionResult implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		handleResultsActions();
 		
+		/*
+		ObservableList<PieChart.Data> pieChartData =
+                FXCollections.observableArrayList();
+		for(String k : DataBase.currentQuestion.answers.keySet()){
+			pieChartData.add(new PieChart.Data(k, DataBase.currentQuestion.answers.get(k)));
+		}
+		
+
+        PieChart chart = new PieChart(pieChartData);
+        chart.setTitle(DataBase.currentQuestion.questionTitle);
+        popupQuestionResult$pieChart = chart;
+        */
+		
+		ObservableList<PieChart.Data> pieChartData =
+                FXCollections.observableArrayList(
+                new PieChart.Data("Grapefruit", 13),
+                new PieChart.Data("Oranges", 25),
+                new PieChart.Data("Plums", 10),
+                new PieChart.Data("Pears", 22),
+                new PieChart.Data("Apples", 30));
+        final PieChart chart = new PieChart(pieChartData);
+        chart.setTitle("Imported Fruits");
+        popupQuestionResult$pieChart = chart;
+		
+        
+		System.out.println("Got to the end");
 		//Find the question in the database
 		
 	}
