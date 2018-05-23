@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -34,7 +35,7 @@ public class LoginController implements Initializable{
 	@FXML
 	private TextField login$usernameTextField;
 	@FXML
-	private TextField login$passwordTextField;
+	private PasswordField login$passwordTextField;
 	@FXML
 	private ComboBox<String> login$titleDropdown;
 	@FXML
@@ -48,9 +49,9 @@ public class LoginController implements Initializable{
 	@FXML
 	private TextField login$otherUsernameTextField;
 	@FXML
-	private TextField login$otherPasswordTextField;
+	private PasswordField login$otherPasswordTextField;
 	@FXML
-	private TextField login$repeatPasswordTextField;
+	private PasswordField login$repeatPasswordTextField;
 	@FXML
 	private Button homeButton;
 	@FXML
@@ -89,6 +90,9 @@ public class LoginController implements Initializable{
 				String username = login$usernameTextField.getText();
 				String password = login$passwordTextField.getText();
 				Account account = DataBase.checkLogin(username, password);
+				System.out.println(username);System.out.println(password);
+				
+				
 				if(account == null){
 					AlertBox.display("Alert!", "Incorrect username or password");
 				} else{
