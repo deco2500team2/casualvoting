@@ -2,6 +2,8 @@ package Source;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -25,6 +27,7 @@ public class CreateVoteController implements Initializable{
 	/*
 	 * Instance variables:
 	 */
+	List<Question> questions;
 	
 	/* The GUI components from the FXML file */
 	@FXML
@@ -57,18 +60,59 @@ public class CreateVoteController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		handlecreateVoteActions();
+		questions = new ArrayList<Question>();
 	}
 	
 	public void handlecreateVoteActions() {
 		homeButton.setOnAction(homeButtonHandler());
 		logoutButton.setOnAction(logoutButtonHandler());
 		backButton.setOnAction(homeButtonHandler());
+		createVote$saveButton.setOnAction(saveButtonHandler());
+		createVote$addQuestionButton.setOnAction(addQuestionButtonHandler());
+		
+	}
+	
+	private EventHandler<ActionEvent> addQuestionButtonHandler(){
+		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				try {
+					Parent p = FXMLLoader.load(getClass().getResource("popupQuestion.fxml"));
+					Scene nextScene = new Scene(p);
+					Stage window = new Stage();
+					window.setScene(nextScene);
+					window.showAndWait();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		return event;
 	}
 	
 	
-	/*
-	 * Changes the scene to the home scene
-	 */
+	private EventHandler<ActionEvent> saveButtonHandler(){
+		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				DataBase.addVote(createVote$voteTitleTextField.getText(), DataBase.userAccount, createVote$descriptionTextField.getText());
+				DataBase.currentVote = DataBase.getVote(createVote$voteTitleTextField.getText());
+				DataBase.currentVote.questions = questions;
+				try {
+					Parent p = FXMLLoader.load(getClass().getResource("voteDetails.fxml"));
+					Scene nextScene = new Scene(p);
+					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+					window.setScene(nextScene);
+					window.show();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		return event;
+	}
+	
+	
 	private EventHandler<ActionEvent> homeButtonHandler(){
 		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
 			@Override

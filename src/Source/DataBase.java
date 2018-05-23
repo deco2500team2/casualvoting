@@ -16,6 +16,7 @@ public class DataBase {
 	static List<Vote> votes;
 	static Account userAccount;
 	static Vote currentVote;
+	static String currentAnswer;
 	
 	public static void setupDatabase() {
 		accounts = new ArrayList<Account>();

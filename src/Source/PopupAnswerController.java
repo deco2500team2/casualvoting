@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -13,7 +15,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -21,21 +26,16 @@ import javafx.stage.Stage;
  * Controller class for the voting application.
  * @author Simon Curtis
  */
-public class PopupPasswordController implements Initializable{
+public class PopupAnswerController implements Initializable{
 	/*
 	 * Instance variables:
 	 */
 	
 	/* The GUI components from the FXML file */
 	@FXML
-	private Button saveButton;
+	private Button popupSaveSuccessful$done;
 	@FXML
-	private TextField popupPassword$currentPWord;
-	@FXML
-	private TextField popupPassword$newPWord;
-	@FXML
-	private TextField popupPassword$newPasswordRepeat;
-	
+	private TextField popupQuestion$txtQuestion;
 	
 	/**
 	 * A method to handle the GUI initialisation.
@@ -53,17 +53,16 @@ public class PopupPasswordController implements Initializable{
 	 * A method to create all of the button handlers for the login scene.
 	 */
 	private void handleAccountDetailActions(){
-		saveButton.setOnAction(saveButtonHandler());
+		popupSaveSuccessful$done.setOnAction(doneButtonHandler());
 	}
 	
-	/*
-	 * Changes the scene to the reset password scene
-	 */
-	private EventHandler<ActionEvent> saveButtonHandler(){
+	
+	private EventHandler<ActionEvent> doneButtonHandler(){
 		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event){
-				DataBase.userAccount.password = popupPassword$newPWord.getText();
+				String Answer = popupQuestion$txtQuestion.getText();
+				DataBase.currentAnswer = Answer;
 				Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 				window.close();
 			}

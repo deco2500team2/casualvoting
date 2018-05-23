@@ -43,7 +43,7 @@ public class VoteDetailsController implements Initializable{
 	@FXML
 	private Button voteSetting$finishButton;
 	@FXML
-	private ChoiceBox voteSetting$groupBox;
+	private ChoiceBox<String> voteSetting$groupBox;
 	@FXML
 	private CheckBox voteSetting$openCheckBox;
 	@FXML
@@ -64,6 +64,8 @@ public class VoteDetailsController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		handleVoteDetailsActions();
+		voteSetting$groupBox.getItems().addAll("Public", "Private");
+		voteSetting$hyperlink.setText("https://www.casual_voting.com/votes/id=17a8hd999ns15");
 	}
 
 	/*
@@ -72,11 +74,58 @@ public class VoteDetailsController implements Initializable{
 	private void handleVoteDetailsActions(){
 		homeButton.setOnAction(homeButtonHandler());
 		logoutButton.setOnAction(logoutButtonHandler());
+		backButton.setOnAction(backButtonHandler());
+		voteSetting$finishButton.setOnAction(finishButtonHandler());
+		
 	}
 	
-	/*
-	 * Changes the scene to the home scene
-	 */
+	private EventHandler<ActionEvent> finishButtonHandler(){
+		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				DataBase.currentVote.opentime =  voteSetting$openDatePicker.getValue().toString();
+				DataBase.currentVote.closetime = voteSetting$closeDatePicker.getValue().toString();
+				DataBase.currentVote.url = voteSetting$hyperlink.getText();
+				if(voteSetting$groupBox.getValue().equals("public")){
+					DataBase.currentVote.privacy = true;
+				} else {
+					DataBase.currentVote.privacy = false;
+				}
+				
+				try {
+					Parent p = FXMLLoader.load(getClass().getResource("accountHome.fxml"));
+					Scene nextScene = new Scene(p);
+					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+					window.setScene(nextScene);
+					window.show();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		return event;
+	}
+	
+	
+	private EventHandler<ActionEvent> backButtonHandler(){
+		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				try {
+					Parent p = FXMLLoader.load(getClass().getResource("createVote.fxml"));
+					Scene nextScene = new Scene(p);
+					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+					window.setScene(nextScene);
+					window.show();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		return event;
+	}
+	
+	
 	private EventHandler<ActionEvent> homeButtonHandler(){
 		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
 			@Override
