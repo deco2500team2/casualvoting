@@ -46,9 +46,15 @@ public class ParticipateVoteController implements Initializable{
 	@FXML
 	private Button doneButton;
 	@FXML
+	private Button saveQuestionButton;
+	@FXML
 	private Label pageTitle;
 	@FXML
 	private ListView<String> listview;
+	@FXML
+	private ListView<String> listviewOption;
+	@FXML
+	private Label lblQuestion;
 	
 	
 	/**
