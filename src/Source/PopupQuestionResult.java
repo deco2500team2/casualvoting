@@ -39,11 +39,13 @@ public class PopupQuestionResult implements Initializable{
 	 * Instance variables:
 	 */
 	@FXML
+	private Label popupQuestionResult$questionLabel;
+	@FXML
 	private Button saveButton;
 	@FXML
 	private PieChart popupQuestionResult$pieChart;
 	@FXML
-	private BarChart<?, ?> barChart;
+	private BarChart<String,Number> popupQuestionResult$barChart;
 	
 	
 	
@@ -57,34 +59,22 @@ public class PopupQuestionResult implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		handleResultsActions();
 		
-		/*
+		
+		popupQuestionResult$questionLabel.setText("Question: "+ DataBase.currentQuestion.questionTitle);
+		
+		
+		XYChart.Series series1 = new XYChart.Series();
 		ObservableList<PieChart.Data> pieChartData =
                 FXCollections.observableArrayList();
 		for(String k : DataBase.currentQuestion.answers.keySet()){
 			pieChartData.add(new PieChart.Data(k, DataBase.currentQuestion.answers.get(k)));
+			series1.getData().add(new XYChart.Data(k, DataBase.currentQuestion.answers.get(k)));
 		}
 		
 
-        PieChart chart = new PieChart(pieChartData);
-        chart.setTitle(DataBase.currentQuestion.questionTitle);
-        popupQuestionResult$pieChart = chart;
-        */
-		
-		ObservableList<PieChart.Data> pieChartData =
-                FXCollections.observableArrayList(
-                new PieChart.Data("Grapefruit", 13),
-                new PieChart.Data("Oranges", 25),
-                new PieChart.Data("Plums", 10),
-                new PieChart.Data("Pears", 22),
-                new PieChart.Data("Apples", 30));
-        final PieChart chart = new PieChart(pieChartData);
-        chart.setTitle("Imported Fruits");
-        popupQuestionResult$pieChart = chart;
-		
-        
-		System.out.println("Got to the end");
-		//Find the question in the database
-		
+		popupQuestionResult$pieChart.setData(pieChartData);
+        popupQuestionResult$barChart.getData().add(series1);
+        popupQuestionResult$barChart.setLegendVisible(false);
 	}
 	
 	/*
