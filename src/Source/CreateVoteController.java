@@ -68,6 +68,7 @@ public class CreateVoteController implements Initializable{
 		logoutButton.setOnAction(logoutButtonHandler());
 		backButton.setOnAction(homeButtonHandler());
 		createVote$saveButton.setOnAction(saveButtonHandler());
+		//createVote$viewQuestionButton.setOnAction(viewButtonHandler());
 		createVote$addQuestionButton.setOnAction(addQuestionButtonHandler());
 		
 	}
@@ -95,18 +96,23 @@ public class CreateVoteController implements Initializable{
 		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event){
-				DataBase.addVote(createVote$voteTitleTextField.getText(), DataBase.userAccount, createVote$descriptionTextField.getText());
-				DataBase.currentVote = DataBase.getVote(createVote$voteTitleTextField.getText());
-				DataBase.currentVote.questions = DataBase.currentQuestions;
-				try {
-					Parent p = FXMLLoader.load(getClass().getResource("voteDetails.fxml"));
-					Scene nextScene = new Scene(p);
-					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-					window.setScene(nextScene);
-					window.show();
-				} catch (IOException e) {
-					e.printStackTrace();
+				if(createVote$voteTitleTextField.getText()==null||createVote$voteTitleTextField.getText().equals("")){
+					AlertBox.display("Alert!", "Please enter a vote title");
+				}else{
+					DataBase.addVote(createVote$voteTitleTextField.getText(), DataBase.userAccount, createVote$descriptionTextField.getText());
+					DataBase.currentVote = DataBase.getVote(createVote$voteTitleTextField.getText());
+					DataBase.currentVote.questions = DataBase.currentQuestions;
+					try {
+						Parent p = FXMLLoader.load(getClass().getResource("voteDetails.fxml"));
+						Scene nextScene = new Scene(p);
+						Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+						window.setScene(nextScene);
+						window.show();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
+				
 			}
 		};
 		return event;
@@ -119,6 +125,24 @@ public class CreateVoteController implements Initializable{
 			public void handle(ActionEvent event){
 				try {
 					Parent p = FXMLLoader.load(getClass().getResource("accountHome.fxml"));
+					Scene nextScene = new Scene(p);
+					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+					window.setScene(nextScene);
+					window.show();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		return event;
+	}
+	
+	private EventHandler<ActionEvent> viewButtonHandler(){
+		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				try {
+					Parent p = FXMLLoader.load(getClass().getResource("popupQuestionList.fxml"));
 					Scene nextScene = new Scene(p);
 					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 					window.setScene(nextScene);

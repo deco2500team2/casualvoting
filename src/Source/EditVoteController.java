@@ -73,6 +73,7 @@ public class EditVoteController implements Initializable{
 	private void handleEditVoteActions(){
 		homeButton.setOnAction(homeButtonHandler());
 		logoutButton.setOnAction(logoutButtonHandler());
+		backButton.setOnAction(backButtonHandler());
 	}
 	
 	/*
@@ -84,6 +85,24 @@ public class EditVoteController implements Initializable{
 			public void handle(ActionEvent event){
 				try {
 					Parent p = FXMLLoader.load(getClass().getResource("accountHome.fxml"));
+					Scene nextScene = new Scene(p);
+					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+					window.setScene(nextScene);
+					window.show();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		return event;
+	}
+	
+	private EventHandler<ActionEvent> backButtonHandler(){
+		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				try {
+					Parent p = FXMLLoader.load(getClass().getResource("votePage.fxml"));
 					Scene nextScene = new Scene(p);
 					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 					window.setScene(nextScene);

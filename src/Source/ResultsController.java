@@ -75,7 +75,7 @@ public class ResultsController implements Initializable{
 	private void handleResultsActions(){
 		homeButton.setOnAction(homeButtonHandler());
 		logoutButton.setOnAction(logoutButtonHandler());
-		
+		backButton.setOnAction(backButtonHandler());
 		listview.getSelectionModel().selectedItemProperty().addListener(listSelectionHandler());
 	}
 	
@@ -124,6 +124,28 @@ public class ResultsController implements Initializable{
 		};
 		return event;
 	}
+	
+	/*
+	 * Handles the back button
+	 */
+	private EventHandler<ActionEvent> backButtonHandler(){
+		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				try {
+					Parent p = FXMLLoader.load(getClass().getResource("votePage.fxml"));
+					Scene nextScene = new Scene(p);
+					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+					window.setScene(nextScene);
+					window.show();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		return event;
+	}
+	
 	
 	/*
 	 * Changes the scene to the login scene

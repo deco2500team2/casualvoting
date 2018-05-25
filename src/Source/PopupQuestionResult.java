@@ -61,14 +61,21 @@ public class PopupQuestionResult implements Initializable{
 		
 		
 		popupQuestionResult$questionLabel.setText("Question: "+ DataBase.currentQuestion.questionTitle);
-		
+		Boolean flag = true;
 		
 		XYChart.Series series1 = new XYChart.Series();
 		ObservableList<PieChart.Data> pieChartData =
                 FXCollections.observableArrayList();
 		for(String k : DataBase.currentQuestion.answers.keySet()){
-			pieChartData.add(new PieChart.Data(k, DataBase.currentQuestion.answers.get(k)));
-			series1.getData().add(new XYChart.Data(k, DataBase.currentQuestion.answers.get(k)));
+			if(DataBase.currentQuestion.answers.get(k)!=0){
+				pieChartData.add(new PieChart.Data(k, DataBase.currentQuestion.answers.get(k)));
+				series1.getData().add(new XYChart.Data(k, DataBase.currentQuestion.answers.get(k)));
+			}else{
+				flag = false;
+			}
+		}
+		if(flag){
+			pieChartData.add(new PieChart.Data("No results yet!", 1));
 		}
 		
 
@@ -93,6 +100,8 @@ public class PopupQuestionResult implements Initializable{
 			@Override
 			public void handle(ActionEvent event){
 				System.out.println("Clicked button");
+				Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+				window.close();
 			}
 		};
 		return event;

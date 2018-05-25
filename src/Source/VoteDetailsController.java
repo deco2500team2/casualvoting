@@ -2,6 +2,8 @@ package Source;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -83,14 +85,46 @@ public class VoteDetailsController implements Initializable{
 		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event){
-				DataBase.currentVote.opentime =  voteSetting$openDatePicker.getValue().toString();
-				DataBase.currentVote.closetime = voteSetting$closeDatePicker.getValue().toString();
-				DataBase.currentVote.url = voteSetting$hyperlink.getText();
-				if(voteSetting$groupBox.getValue().equals("public")){
-					DataBase.currentVote.privacy = true;
-				} else {
-					DataBase.currentVote.privacy = false;
+				if(voteSetting$openCheckBox.isSelected()){
+					DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+					LocalDate localDate = LocalDate.now();
+					DataBase.currentVote.opentime =  localDate.toString();
+				}else{
+					if(DataBase.currentVote.opentime!=null){
+						DataBase.currentVote.opentime =  voteSetting$openDatePicker.getValue().toString();
+					}else{
+						DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+						LocalDate localDate = LocalDate.now();
+						DataBase.currentVote.opentime =  localDate.toString();
+					}
+					
 				}
+				if(voteSetting$closeCheckBox.isSelected()){
+					DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+					LocalDate localDate = LocalDate.now();
+					DataBase.currentVote.closetime =  localDate.toString();
+				}else{
+					if(DataBase.currentVote.closetime!=null){
+						DataBase.currentVote.closetime =  voteSetting$openDatePicker.getValue().toString();
+					}else{
+						DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+						LocalDate localDate = LocalDate.now();
+						DataBase.currentVote.closetime =  localDate.toString();
+					}
+				}
+				
+				
+				DataBase.currentVote.url = voteSetting$hyperlink.getText();
+				if(voteSetting$groupBox.getValue()==null){
+					DataBase.currentVote.privacy = true;
+				}else{
+					if(voteSetting$groupBox.getValue().equals("public")){
+						DataBase.currentVote.privacy = true;
+					} else {
+						DataBase.currentVote.privacy = false;
+					}
+				}
+				
 				
 				try {
 					Parent p = FXMLLoader.load(getClass().getResource("accountHome.fxml"));

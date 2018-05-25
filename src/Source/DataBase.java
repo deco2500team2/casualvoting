@@ -177,7 +177,11 @@ public class DataBase {
 		Vote v = new Vote();
 		v.author = author;
 		v.votename = votename;
-		v.description = decription;
+		if(votename==null | votename.equals("")){
+			v.description = "no description";
+		}else{
+			v.description = votename;
+		}
 		votes.add(v);
 	}
 	

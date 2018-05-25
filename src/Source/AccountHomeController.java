@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -67,6 +69,34 @@ public class AccountHomeController implements Initializable{
 			votenames.add(v.votename);
 		}
 		home$recommendedVotesListView.getItems().setAll(votenames);
+		home$recommendedVotesListView.getSelectionModel().selectedItemProperty().addListener(listSelectionHandler());
+	}
+	
+	/*
+	 * used when a user selects a list item
+	 */
+	private ChangeListener<String> listSelectionHandler(){
+		ChangeListener<String> handler = new ChangeListener<String>(){
+
+			@Override
+			public void changed(ObservableValue<? extends String> arg0,
+					String oldValue, String votename) {
+				//set the current vote
+				//change scene
+				DataBase.currentVote = DataBase.getVote(votename);
+				try {
+					Parent p = FXMLLoader.load(getClass().getResource("votePage.fxml"));
+					Scene nextScene = new Scene(p);
+					Stage window = (Stage)homeButton.getScene().getWindow();
+					window.setScene(nextScene);
+					window.show();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			
+		};
+		return handler;
 	}
 	
 	
