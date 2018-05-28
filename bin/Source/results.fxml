@@ -17,7 +17,7 @@
       <Button fx:id="logoutButton" layoutX="514.0" layoutY="16.0" mnemonicParsing="false" text="LOGOUT" />
       <AnchorPane layoutX="-7.0" layoutY="58.0" prefHeight="341.0" prefWidth="609.0">
          <children>
-            <Button fx:id="backButton" layoutX="14.0" layoutY="302.0" mnemonicParsing="false" text="CANCEL" />
+            <Button fx:id="backButton" layoutX="14.0" layoutY="302.0" mnemonicParsing="false" text="BACK" />
             <Button layoutX="546.0" layoutY="302.0" mnemonicParsing="false" text="PRINT" />
             <Label fx:id="lblResult" layoutX="73.0" layoutY="14.0" text="Result of vote  (vote name).  In totoal __ responses were collected." />
             <Button layoutX="450.0" layoutY="302.0" mnemonicParsing="false" text="DOWNLOAD" />

@@ -1,2 +1,8 @@
 I hate Uni,f,false,2018-05-16,2018-05-30,https://www.casual_voting.com/votes/id=17a8hd999ns15,I want to Kill myself
 Favourite Fruit,f,false,2018-05-09,2018-05-15,https://www.casual_voting.com/votes/id=17a8hd999ns15,A vote about fruits
+Colour?,e,false, 2018-05-09,2018-05-15,https://www.casual_voting.com/votes/id=17a8hd999ns15,A vote about colour
+123,e,false, 018-05-09,2018-05-15,https://www.casual_voting.com/votes/id=17a8hd999ns15,123
+car?,f,false,2018-05-08,2018-05-02,https://www.casual_voting.com/votes/id=17a8hd999ns15,fast
+test,f,false,2018-05-16,2018-05-31,https://www.casual_voting.com/votes/id=17a8hd999ns15,test
+test2,f,false,2018-05-17,2018-05-30,https://www.casual_voting.com/votes/id=17a8hd999ns15,test2
+123,f,false,null,null,null,123

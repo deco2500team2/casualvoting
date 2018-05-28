@@ -70,7 +70,6 @@ public class PopupQuestionResult implements Initializable{
 			if(DataBase.currentQuestion.answers.get(k)!=0){
 				pieChartData.add(new PieChart.Data(k, DataBase.currentQuestion.answers.get(k)));
 				series1.getData().add(new XYChart.Data(k, DataBase.currentQuestion.answers.get(k)));
-			}else{
 				flag = false;
 			}
 		}
