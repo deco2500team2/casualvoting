@@ -15,7 +15,7 @@
                <children>
                   <Button fx:id="home$accountDetailsButton" layoutX="38.0" layoutY="33.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="227.0" text="Account Details" />
                   <Button fx:id="home$createVoteButton" layoutX="38.0" layoutY="115.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="227.0" text="Create Vote" />
-                  <Button fx:id="home$viewVoteAndDetailsButton" layoutX="38.0" layoutY="207.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="227.0" text="View Vote and Details" />
+                  <Button fx:id="home$viewVoteAndDetailsButton" layoutX="38.0" layoutY="207.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="227.0" text="Participate in Vote and View Results" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="313.0" prefWidth="400.0">
