@@ -68,7 +68,7 @@ public class CreateVoteController implements Initializable{
 		logoutButton.setOnAction(logoutButtonHandler());
 		backButton.setOnAction(homeButtonHandler());
 		createVote$saveButton.setOnAction(saveButtonHandler());
-		//createVote$viewQuestionButton.setOnAction(viewButtonHandler());
+		createVote$viewQuestionButton.setOnAction(viewButtonHandler());
 		createVote$addQuestionButton.setOnAction(addQuestionButtonHandler());
 		
 	}
@@ -144,9 +144,9 @@ public class CreateVoteController implements Initializable{
 				try {
 					Parent p = FXMLLoader.load(getClass().getResource("popupQuestionList.fxml"));
 					Scene nextScene = new Scene(p);
-					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+					Stage window = new Stage();
 					window.setScene(nextScene);
-					window.show();
+					window.showAndWait();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

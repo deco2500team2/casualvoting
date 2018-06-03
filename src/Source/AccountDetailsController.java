@@ -60,12 +60,24 @@ public class AccountDetailsController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		handleAccountDetailActions();
-		accountDetails$titleDropdown.getItems().addAll("Mr", "Mrs");
+		
+		accountDetails$titleDropdown.getItems().addAll("Miss", "Mr", "Mrs", "Ms","Dr");
 		accountDetails$firstnameTextField.setText(DataBase.userAccount.firstname);
 		accountDetails$surnameTextField.setText(DataBase.userAccount.surname);
 		accountDetails$dobTextField.setText(DataBase.userAccount.DoB);
 		accountDetails$emailTextField.setText(DataBase.userAccount.email);
 		accountDetails$usernameTextField.setText(DataBase.userAccount.username);
+		
+		//Set the default value to be the one selected by the user
+		int index = -1;
+		for (int i=0; i<accountDetails$titleDropdown.getItems().size(); i++){
+			if(accountDetails$titleDropdown.getItems().get(i).equals(DataBase.userAccount.title)){
+				index = i;
+			}
+		}
+		
+		System.out.println(DataBase.userAccount.title);
+		accountDetails$titleDropdown.getSelectionModel().select(index);
 	}
 	
 	
@@ -110,6 +122,7 @@ public class AccountDetailsController implements Initializable{
 			public void handle(ActionEvent event){
 				DataBase.userAccount.firstname = accountDetails$firstnameTextField.getText();
 				DataBase.userAccount.surname = accountDetails$surnameTextField.getText();
+				DataBase.userAccount.title = accountDetails$titleDropdown.getSelectionModel().getSelectedItem();
 				DataBase.userAccount.DoB = accountDetails$dobTextField.getText();
 				DataBase.userAccount.email = accountDetails$emailTextField.getText();
 				DataBase.userAccount.username = accountDetails$usernameTextField.getText();

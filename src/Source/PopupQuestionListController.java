@@ -2,6 +2,8 @@ package Source;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.beans.value.ChangeListener;
@@ -39,6 +41,12 @@ public class PopupQuestionListController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		List<String> questionNames = new ArrayList<String>();
+		for(Question q:DataBase.currentVote.questions){
+			questionNames.add(q.questionTitle);
+		}
+		listview.getItems().setAll(questionNames);
+		
 		handleAccountDetailActions();
 		
 	}

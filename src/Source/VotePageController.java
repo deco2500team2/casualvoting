@@ -69,10 +69,20 @@ public class VotePageController implements Initializable{
 	 * A method to create all of the button handlers for the login scene.
 	 */
 	private void handleVotePageActions(){
+				
 		homeButton.setOnAction(homeButtonHandler());
 		logoutButton.setOnAction(logoutButtonHandler());
 		backButton.setOnAction(backButtonHandler());
-		vote$editVoteButton.setOnAction(editVoteButtonHandler());
+		if(DataBase.currentVote.author.username.equals(DataBase.userAccount.username)){			
+			vote$editVoteButton.setOnAction(editVoteButtonHandler());
+			
+		}else{
+			vote$editVoteButton.setVisible(false);
+		}
+		
+		System.out.println(DataBase.userAccount.username);
+		System.out.println(DataBase.currentVote.author.username);
+		
 		vote$participateButton.setOnAction(participateButtonHandler());
 		vote$viewResultsButton.setOnAction(viewResultsButtonHandler());
 		vote$saveAndFinishButton.setOnAction(saveButtonHandler());

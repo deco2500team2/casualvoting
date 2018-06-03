@@ -69,7 +69,7 @@ public class LoginController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		handleloginActions();
-		login$titleDropdown.getItems().addAll("Mr", "Mrs");
+		login$titleDropdown.getItems().addAll("Miss", "Mr", "Mrs", "Ms", "Dr");
 	}
 	
 	/*
@@ -119,7 +119,7 @@ public class LoginController implements Initializable{
 			@Override
 			public void handle(ActionEvent event){
 				DataBase.addAccount(login$otherUsernameTextField.getText(), login$otherPasswordTextField.getText(), 
-						login$emailTextField.getText(), "Mr", login$firstnameTextField.getText(), 
+						login$emailTextField.getText(), login$titleDropdown.getSelectionModel().getSelectedItem(), login$firstnameTextField.getText(), 
 						login$surnameTextField.getText(), login$dobTextField.getText());
 				AlertBox.display("Alert!", "Account has been created");
 			}
