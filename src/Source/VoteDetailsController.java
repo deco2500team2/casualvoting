@@ -64,7 +64,7 @@ public class VoteDetailsController implements Initializable{
 	 * @param resources The resources to localise the root.
 	 */
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
+	public void initialize(URL location, ResourceBundle resources) {		
 		handleVoteDetailsActions();
 		voteSetting$groupBox.getItems().addAll("Public", "Private");
 		voteSetting$hyperlink.setText("https://www.casual_voting.com/votes/id=17a8hd999ns15");
@@ -146,7 +146,7 @@ public class VoteDetailsController implements Initializable{
 			@Override
 			public void handle(ActionEvent event){
 				try {
-					Parent p = FXMLLoader.load(getClass().getResource("createVote.fxml"));
+					Parent p = FXMLLoader.load(getClass().getResource("editVote.fxml"));
 					Scene nextScene = new Scene(p);
 					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 					window.setScene(nextScene);

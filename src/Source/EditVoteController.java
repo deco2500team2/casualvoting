@@ -2,6 +2,7 @@ package Source;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -51,34 +52,90 @@ public class EditVoteController implements Initializable{
 	@FXML
 	private TextField editVote$voteTitleTextField;
 	@FXML
-	private TextArea editVote$descriptionArea;
+	private TextArea editVote$descriptionTextArea;
 	
+	private String previousVoteName;
 	
-	
-	/**
-	 * A method to handle the GUI initialisation.
-	 * 
-	 * @param location The location of the root object.
-	 * @param resources The resources to localise the root.
-	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		handleEditVoteActions();
+		handlecreateVoteActions();
+		
+		previousVoteName = DataBase.currentVote.votename;
+		
+		editVote$voteTitleTextField.setText(previousVoteName);
+		if(DataBase.currentVote.description==null){
+			editVote$descriptionTextArea.setText("");
+		}else{
+			editVote$descriptionTextArea.setText(DataBase.currentVote.description);
+		}
+		
+		
+		DataBase.currentQuestions = DataBase.currentVote.questions;
+		
+		
 	}
 	
-	
-	/*
-	 * A method to create all of the button handlers for the login scene.
-	 */
-	private void handleEditVoteActions(){
+	public void handlecreateVoteActions() {
 		homeButton.setOnAction(homeButtonHandler());
 		logoutButton.setOnAction(logoutButtonHandler());
-		backButton.setOnAction(backButtonHandler());
+		backButton.setOnAction(homeButtonHandler());
+		editVote$saveButton.setOnAction(saveButtonHandler());
+		editVote$viewQuestionButton.setOnAction(viewButtonHandler());
+		editVote$addQuestionButton.setOnAction(addQuestionButtonHandler());
+		editVote$deleteQuestionButton.setOnAction(deleteQuestionHandler());
 	}
 	
-	/*
-	 * Changes the scene to the home scene
-	 */
+	private EventHandler<ActionEvent> addQuestionButtonHandler(){
+		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				try {
+					Parent p = FXMLLoader.load(getClass().getResource("popupQuestion.fxml"));
+					Scene nextScene = new Scene(p);
+					Stage window = new Stage();
+					window.setScene(nextScene);
+					window.showAndWait();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		return event;
+	}
+	
+	
+	private EventHandler<ActionEvent> saveButtonHandler(){
+		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				if(editVote$voteTitleTextField.getText()==null||editVote$voteTitleTextField.getText().equals("")){
+					AlertBox.display("Alert!", "Please enter a vote title");
+				}else{
+					if(previousVoteName.equals(editVote$voteTitleTextField.getText())){
+						DataBase.updateVote(editVote$voteTitleTextField.getText(), DataBase.userAccount, editVote$descriptionTextArea.getText());
+					}else{
+						DataBase.addVote(editVote$voteTitleTextField.getText(), DataBase.userAccount, editVote$descriptionTextArea.getText());
+					}
+					
+					DataBase.currentVote = DataBase.getVote(editVote$voteTitleTextField.getText());
+					DataBase.currentVote.questions = DataBase.currentQuestions;
+					try {
+						Parent p = FXMLLoader.load(getClass().getResource("voteDetails.fxml"));
+						Scene nextScene = new Scene(p);
+						Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+						window.setScene(nextScene);
+						window.show();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				
+			}
+		};
+		return event;
+	}
+	
+	
 	private EventHandler<ActionEvent> homeButtonHandler(){
 		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
 			@Override
@@ -97,16 +154,34 @@ public class EditVoteController implements Initializable{
 		return event;
 	}
 	
-	private EventHandler<ActionEvent> backButtonHandler(){
+	private EventHandler<ActionEvent> viewButtonHandler(){
 		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event){
 				try {
-					Parent p = FXMLLoader.load(getClass().getResource("votePage.fxml"));
+					Parent p = FXMLLoader.load(getClass().getResource("popupQuestionList.fxml"));
 					Scene nextScene = new Scene(p);
-					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+					Stage window = new Stage();
 					window.setScene(nextScene);
-					window.show();
+					window.showAndWait();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		return event;
+	}
+	
+	private EventHandler<ActionEvent> deleteQuestionHandler(){
+		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				try {
+					Parent p = FXMLLoader.load(getClass().getResource("popupQuestionDelete.fxml"));
+					Scene nextScene = new Scene(p);
+					Stage window = new Stage();
+					window.setScene(nextScene);
+					window.showAndWait();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

@@ -18,7 +18,7 @@ public class DataBase {
 	static Vote currentVote;
 	static Question currentQuestion;
 	
-	static Boolean loadVote = false;
+	static Boolean edit = false;
 	static Boolean loadQuestion = false;
 	
 	//just used for creating votes
@@ -183,9 +183,18 @@ public class DataBase {
 		if(votename==null | votename.equals("")){
 			v.description = "no description";
 		}else{
-			v.description = votename;
+			v.description = decription;
 		}
 		votes.add(v);
+	}
+	
+	public static void updateVote(String votename, Account author, String description){
+		for (Vote v: votes){
+			if(v.votename.equals(votename) && v.author.equals(author)){
+				v.description = description;
+			}
+		}
+		
 	}
 	
 	public static void addQuestion(String votename, String questionname) {
