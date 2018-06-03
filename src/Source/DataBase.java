@@ -18,6 +18,9 @@ public class DataBase {
 	static Vote currentVote;
 	static Question currentQuestion;
 	
+	static Boolean loadVote = false;
+	static Boolean loadQuestion = false;
+	
 	//just used for creating votes
 	static String currentAnswer;
 	static List<Question> currentQuestions;

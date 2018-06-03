@@ -39,6 +39,8 @@ public class PopupQuestionController implements Initializable{
 	@FXML
 	private Button addAnswer;
 	@FXML
+	private Button deleteAnswer;
+	@FXML
 	private ChoiceBox<String> choicebox;
 	@FXML
 	private ListView<String> listview;
@@ -51,8 +53,19 @@ public class PopupQuestionController implements Initializable{
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		handleAccountDetailActions();
 		choicebox.getItems().addAll("MultiChoice", "Written Responce");
+		if(DataBase.loadQuestion){
+			String value = DataBase.currentQuestion.questionTitle;
+			popupPassword$currentPWord.setText(value);
+			choicebox.getSelectionModel().select(0);
+			for(String answer: DataBase.currentQuestion.answers.keySet() ){
+				listview.getItems().add(answer);
+			}
+		}
+		
+		handleAccountDetailActions();
+		
+		DataBase.loadQuestion = false;
 	}
 	
 	
@@ -63,6 +76,7 @@ public class PopupQuestionController implements Initializable{
 		saveButton.setOnAction(saveButtonHandler());
 		addAnswer.setOnAction(addAnswerHandler());
 		listview.getSelectionModel().selectedItemProperty().addListener(listSelectionHandler());
+		deleteAnswer.setOnAction(deleteAnswerHandler());
 	}
 	
 	private ChangeListener<String> listSelectionHandler(){
@@ -91,6 +105,21 @@ public class PopupQuestionController implements Initializable{
 					listview.getItems().add(DataBase.currentAnswer);
 				} catch (IOException e) {
 					e.printStackTrace();
+				}
+			}
+		};
+		return event;
+	}
+	
+	private EventHandler<ActionEvent> deleteAnswerHandler(){
+		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				String selected = listview.getSelectionModel().getSelectedItem();
+				for(int i=0; i<listview.getItems().size(); i++){
+					if(listview.getItems().get(i).equals(selected)){
+						listview.getItems().remove(i);
+					}
 				}
 			}
 		};

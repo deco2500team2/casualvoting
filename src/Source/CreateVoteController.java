@@ -70,7 +70,7 @@ public class CreateVoteController implements Initializable{
 		createVote$saveButton.setOnAction(saveButtonHandler());
 		createVote$viewQuestionButton.setOnAction(viewButtonHandler());
 		createVote$addQuestionButton.setOnAction(addQuestionButtonHandler());
-		
+		createVote$deleteQuestionButton.setOnAction(deleteQuestionHandler());
 	}
 	
 	private EventHandler<ActionEvent> addQuestionButtonHandler(){
@@ -143,6 +143,24 @@ public class CreateVoteController implements Initializable{
 			public void handle(ActionEvent event){
 				try {
 					Parent p = FXMLLoader.load(getClass().getResource("popupQuestionList.fxml"));
+					Scene nextScene = new Scene(p);
+					Stage window = new Stage();
+					window.setScene(nextScene);
+					window.showAndWait();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		return event;
+	}
+	
+	private EventHandler<ActionEvent> deleteQuestionHandler(){
+		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event){
+				try {
+					Parent p = FXMLLoader.load(getClass().getResource("popupQuestionDelete.fxml"));
 					Scene nextScene = new Scene(p);
 					Stage window = new Stage();
 					window.setScene(nextScene);

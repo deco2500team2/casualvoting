@@ -22,14 +22,14 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class PopupQuestionListController implements Initializable {
+public class PopupQuestionDeleteController implements Initializable {
 	/*
 	 * Instance variables:
 	 */
 	
 	/* The GUI components from the FXML file */
 	@FXML
-	private Button saveButton;
+	private Button deleteButton;
 	@FXML
 	private ListView<String> listview;
 	
@@ -56,51 +56,28 @@ public class PopupQuestionListController implements Initializable {
 	 * A method to create all of the button handlers for the login scene.
 	 */
 	private void handleAccountDetailActions(){
-		saveButton.setOnAction(saveButtonHandler());
-		listview.getSelectionModel().selectedItemProperty().addListener(listSelectionHandler());
+		deleteButton.setOnAction(deleteButtonHandler());
+		
 	}
 	
-	private ChangeListener<String> listSelectionHandler(){
-		ChangeListener<String> handler = new ChangeListener<String>(){
-
-			@Override
-			public void changed(ObservableValue<? extends String> arg0,
-					String oldValue, String questionName) {
-				//set the current question
-				//change scene
-				for(int i=0; i<DataBase.currentQuestions.size(); i++){
-					DataBase.currentQuestion = DataBase.currentQuestions.get(i);
-				}
-				//Set to loat the question
-				DataBase.loadQuestion = true;
-				try {
-					Parent p = FXMLLoader.load(getClass().getResource("popupQuestion.fxml"));
-					Scene nextScene = new Scene(p);
-					Stage window = new Stage();
-					window.setScene(nextScene);
-					window.showAndWait();
-					
-					Stage window2 = (Stage)(listview.getScene().getWindow());
-					window2.close();
-					
-					
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-			
-		};
-		return handler;
-	}
-	
-	private EventHandler<ActionEvent> saveButtonHandler(){
+	private EventHandler<ActionEvent> deleteButtonHandler(){
 		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event){
-				Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-				window.close();
+				String selected = listview.getSelectionModel().getSelectedItem();
+				for(int i=0; i<listview.getItems().size(); i++){
+					if(listview.getItems().get(i).equals(selected)){
+						listview.getItems().remove(i);
+					}
+				}
+				for(int i=0; i<DataBase.currentQuestions.size(); i++){
+					if(DataBase.currentQuestions.get(i).questionTitle.equals(selected)){
+						DataBase.currentQuestions.remove(i);
+					}
+				}
 			}
 		};
 		return event;
 	}
+	
 }
