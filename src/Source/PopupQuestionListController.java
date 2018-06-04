@@ -69,8 +69,12 @@ public class PopupQuestionListController implements Initializable {
 				//set the current question
 				//change scene
 				for(int i=0; i<DataBase.currentQuestions.size(); i++){
-					DataBase.currentQuestion = DataBase.currentQuestions.get(i);
+					if(questionName.equals(DataBase.currentQuestions.get(i).questionTitle)){
+						DataBase.currentQuestion = DataBase.currentQuestions.get(i);
+					}
+					
 				}
+				
 				//Set to loat the question
 				DataBase.loadQuestion = true;
 				try {

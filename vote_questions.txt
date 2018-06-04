@@ -2,3 +2,4 @@ I hate Uni,Do you hate Uni?,No,4,Yes,5
 I hate Uni,Do you want to kill yourself?,No,3,Yes,3
 Favourite Fruit,What is your favourite fruit?,Apple,1,Grape,2,Orange,1,Banana,0
 Favourite Fruit,What is your favourite vegetable?,Potato,0,Lettuce,0,Carrot,0,Cabbage,0
+Favourite Fruit,What is your favourite flower?,marigold,0,orange blossom,0,tulip,0,daisy,0
